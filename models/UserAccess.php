@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use app\models\StaffDokter;
+
 
 class UserAccess extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -30,11 +32,11 @@ class UserAccess extends \yii\db\ActiveRecord implements \yii\web\IdentityInterf
         ];
     }
 
-    public function getTblStaffDoks()
+    public function getStaff()
     {
-        return $this->hasOne(TblStaffDok::className(), ['id_user' => 'id_user']);
+        return $this->hasOne(StaffDokter::className(), ['id_user' => 'id_user']);
     }
-
+    
     public static function findIdentity($id){
         return self::findOne($id);
     }

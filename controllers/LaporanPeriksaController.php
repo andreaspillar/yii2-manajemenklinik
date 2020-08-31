@@ -6,6 +6,7 @@ use Yii;
 use app\models\LaporanPeriksa;
 use app\models\JadwalKunjungan;
 use app\models\ResepDokter;
+use app\models\StaffDokter;
 use app\models\LaporanPeriksaSearch;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
@@ -38,10 +39,10 @@ class LaporanPeriksaController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
+    { 
         $searchModel = new LaporanPeriksaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->user->identity->id_user);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

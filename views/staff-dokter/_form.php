@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\base\Widget;
+use app\models\UserAccess;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\StaffDokter */
@@ -10,6 +12,11 @@ use yii\base\Widget;
 ?>
 
 <div class="staff-dokter-form">
+
+    <?php 
+        $user = UserAccess::find()->where(['user_access' => 3])->all();
+        $arrUser = ArrayHelper::map($user, 'id_user', 'username');
+    ?>
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -31,7 +38,7 @@ use yii\base\Widget;
 
     <?= $form->field($model, 'alamat')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'id_user')->textInput() ?>
+    <?= $form->field($model, 'id_user')->dropDownList($arrUser, ['prompt' => 'Pilih...']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\LaporanPeriksa;
@@ -39,9 +40,10 @@ class LaporanPeriksaSearch extends LaporanPeriksa
      */
     public function search($params)
     {
-        $query = LaporanPeriksa::find();
+        $searchDokter = StaffDokter::find()->where(['id_user' => $params])->all();
+        $searchKunjungan = JadwalKunjungan::find()->where(['nomor_induk_karyawan' => $searchDokter])->all();
+        $query = LaporanPeriksa::find()->where(['no_kunjungan' => $searchKunjungan]);
 
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

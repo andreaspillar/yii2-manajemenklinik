@@ -31,7 +31,7 @@ class LaporanPeriksa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kode_laporan', 'no_kunjungan', 'diagnosa', 'tindakan', 'jumlah_resep'], 'required'],
+            [['kode_laporan', 'no_kunjungan', 'diagnosa', 'tindakan'], 'required'],
             [['diagnosa', 'tindakan'], 'string'],
             [['kode_laporan', 'no_kunjungan'], 'string', 'max' => 128],
             [['kode_laporan'], 'unique'],

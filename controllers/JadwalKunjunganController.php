@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\JadwalKunjungan;
 use app\models\DataPasien;
+use app\models\StaffDokter;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -46,10 +47,12 @@ class JadwalKunjunganController extends Controller
         ]);
     }
     
+
     public function actionIndexDokterUser()
     {
+        $getUser = StaffDokter::find()->where(['id_user' => Yii::$app->user->identity->id_user])->one();
         $dataProvider = new ActiveDataProvider([
-            'query' => JadwalKunjungan::find()->where(['status' => 0])       
+            'query' => JadwalKunjungan::find()->where(['status' => 0, 'nomor_induk_karyawan' => $getUser])       
         ,
         ]);
 

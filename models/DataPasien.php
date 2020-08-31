@@ -33,7 +33,7 @@ class DataPasien extends \yii\db\ActiveRecord
             [['nama_pasien', 'alamat', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir'], 'required'],
             [['alamat'], 'string'],
             [['tanggal_lahir'], 'safe'],
-            [['nama_pasien'], 'string', 'max' => 128],
+            [['nama_pasien'], 'match', 'pattern' => '/^[a-zA-Z]+(?:\s[a-zA-Z,.]+)*$/', 'message' => 'Nama hanya boleh huruf'],
             [['jenis_kelamin'], 'string', 'max' => 1],
             [['tempat_lahir'], 'string', 'max' => 20],
         ];

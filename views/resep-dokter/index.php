@@ -24,8 +24,22 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'kode_resep',
-            'kode_laporan',
-            'id_barang',
+            [
+                'label' => 'Pasien',
+                'value' => 'periksa.kunjungan.pasien.nama_pasien',
+            ],
+            [
+                'label' => 'Penyakit',
+                'value' => 'periksa.diagnosa',
+            ],
+            [
+                'label' => 'Tanggal Kunjungan',
+                'value' => 'periksa.kunjungan.tanggal_kunjungan',
+            ],
+            [
+                'label' => 'Obat',
+                'value' => 'barang.nama_barang',
+            ],
             'jumlah_barang',
 
             ['class' => 'yii\grid\ActionColumn'],

@@ -4,6 +4,9 @@ namespace app\controllers;
 
 use Yii;
 use app\models\ResepDokter;
+use app\models\JadwalKunjungan;
+use app\models\LaporanPeriksa;
+use app\models\StaffDokter;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -35,8 +38,11 @@ class ResepDokterController extends Controller
      */
     public function actionIndex()
     {
+        $searchDokter = StaffDokter::find()->where(['id_user' => Yii::$app->user->identity->id_user])->one();
+        $searchKunjungan = JadwalKunjungan::find()->where(['nomor_induk_karyawan' => $searchDokter])->all();
+        $searchDiagnosa = LaporanPeriksa::find()->where(['no_kunjungan' => $searchKunjungan])->all();
         $dataProvider = new ActiveDataProvider([
-            'query' => ResepDokter::find(),
+            'query' => ResepDokter::find()->where(['kode_laporan' => $searchDiagnosa]),
         ]);
 
         return $this->render('index', [

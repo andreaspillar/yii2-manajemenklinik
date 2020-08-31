@@ -28,7 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'kode_laporan',
-            'no_kunjungan',
+            [
+                'label' => 'Pasien',
+                'value' => 'kunjungan.pasien.nama_pasien',
+            ],
+            [
+                'label' => 'Dokter',
+                'value' => 'kunjungan.staff.nama_tenaga_medis',
+            ],
             'diagnosa:ntext',
             'tindakan:ntext',
 

@@ -31,6 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Obat',
                 'value' => 'barang.nama_barang',
             ],
+            [
+                'label' => 'Obat',
+                'value' => 'barang.produsen',
+            ],
             'jumlah_barang',
 
             // ['class' => 'yii\grid\ActionColumn'],

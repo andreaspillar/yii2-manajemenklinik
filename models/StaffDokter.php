@@ -35,7 +35,7 @@ class StaffDokter extends \yii\db\ActiveRecord
             [['tgl_lahir'], 'safe'],
             [['alamat'], 'string'],
             [['id_user'], 'integer'],
-            [['nama_tenaga_medis'], 'string', 'max' => 128],
+            [['nama_tenaga_medis'], 'match', 'pattern' => '/^[a-zA-Z]+(?:\s[a-zA-Z,.]+)*$/', 'message' => 'Nama hanya boleh huruf'],
             [['jenis_kelamin'], 'string', 'max' => 1],
             [['tempat_lahir'], 'string', 'max' => 64],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => UserAccess::className(), 'targetAttribute' => ['id_user' => 'id_user']],
